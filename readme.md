@@ -1,6 +1,8 @@
 # Michał Grzona, grupa 3, 121356
 ## Nowoczesne technologie przetwarzania danych
 
+# Laboratorium 3.
+
 ### Zawartość plików
 - <i>model.pkl</i> - plik zawierający zapisany model.
 - <i>model.py</i> - skrypt wczytujący model z pliku. W przypadku, gdy nie ma zapisanego modelu tworzy nowy model regresji logistycznej. Model został wytrenowany na datasecie <i>Iris</i> pochodzącym z biblioteki <i>sci-kit learn</i>
@@ -25,3 +27,21 @@ W przypadku błędnego zapytania (nieprawidłowy format) wyświetli się odpowie
 Ze względu, iż Gunicorn nie działa na systemie Windows wykorzystałem Waitress.
 ![img_6.png](img_6.png)
 Aplikacja działa na porcie 8080.
+
+# Laboratorium 4.
+
+### Zadanie 1.
+Utworzyłem plik <i>requirements.txt</i> zawierający moduły konieczne do instalacji do wirtualnego środowiska w celu poprawnego działania aplikacji. Wymagane biblioteki to:
+- NumPy
+- Flask
+- scikit-learn
+
+### Zadanie 2. Ze względu na wygodę korzystania z Dockera resztę ćwiczenia wykonałem na maszynie wirtualnej z systemem operacyjnym Ubuntu
+Utworzyłem dockerfile o nazwie Dockerfile w drzewie projektu. Następnie na jego podstawie utworzyłem obraz dockerowy.
+![img_7.png](img_7.png)
+
+### Zadanie 3. 
+Na podstawie wcześniej utworzonego obrazu utworzyłem kontener docker za pomocą komendy `docker run -d -p 5000:5000 ntpd-flask-app`.
+![img_8.png](img_8.png)
+Aplikacja po ruchumieniu w kontenerze działa poprawnie. Przykładowa predykcja:
+![img_9.png](img_9.png)
