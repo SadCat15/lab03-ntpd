@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  flask-app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=5000
+    depends_on:
+      - redis
+    restart: always
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+
+

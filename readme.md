@@ -45,3 +45,17 @@ Na podstawie wcześniej utworzonego obrazu utworzyłem kontener docker za pomoc�
 ![img_8.png](img_8.png)
 Aplikacja po ruchumieniu w kontenerze działa poprawnie. Przykładowa predykcja:
 ![img_9.png](img_9.png)
+
+### Zadanie 4.
+Utworzyłem plik docker-compose.yaml i za jego pomocą uruchomiłem aplikację. Jako dodatkowy serwis wybrałem Redis. Dodałem prostą funkcjonalność która zlicza ilość zapytań pod endpoint <i>counter</i>.
+![img_10.png](img_10.png)
+![img_11.png](img_11.png)
+
+### Zadanie 5. Sposób uruchaminia
+Przed uruchomienime aplikacji należy pobrać cały kod z GitHub'a. Sposoby uruchamiania aplikacji:
+- lokalnie - należy otworzyć projekt w wybranym IDE, skonfigurować interpreter python i zainstalować zależności podane w pliku requirements.txt. Jako zmienne środowiskowe można ustawić:
+  - <i>FLASK_APP</i> - wskazanie na główny plik aplikacji. Domyślnie app.py
+  - <i>FLASK_RUN_HOST</i> - wskazanie na jakim adresie ma działać aplikacji. Domyślnie localhost.
+    - <i>FLASK_RUN_PORT</i> - wskazanie na jakim porcie ma działać aplikacja. Domyślnie 5000.
+- za pomocą Dockera - na podstawie dostarczonego pliku Dockerfile należy zbudować obraz aplikacji. Dodatkowo należy pobrać obraz Redis, a następnie uruchomić 2 kontenery docker bazujące na wcześniej wspomnianych obrazach.
+- za pomocą Docker Compose - należy wykorzystać plik `docker-compose.yaml` zawarty w projekcie. Po wejściu w katalog projektu w terminalu wpisac `docker-compose up -d`. UWAGA: przed wpisaniem komendy może być wymagane wpisanie sudo i podanie hasła administratora. `sudo docker-compose up -d`
