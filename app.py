@@ -58,10 +58,18 @@ def health():
     return jsonify(server_info), 200
 
 
-@app.route('/counter', methods=['GET']) # zadanie 4, lab 4
+@app.route('/counter', methods=['GET'])  # zadanie 4, lab 4
 def hits():
     redis.incr('counter')
     return jsonify({"Counter": f"{redis.get('counter').decode('utf-8')}"}), 200
+
+
+@app.route('/render', methods=['GET'])
+def render():
+    message = os.environ.get('message_from_render')
+    if message is None:
+        message = "No message"
+    return jsonify({"Message": message}), 200
 
 
 if __name__ == '__main__':
