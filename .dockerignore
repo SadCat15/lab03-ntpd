@@ -1,0 +1,20 @@
+# Środowisko virtualne
+.venv/
+
+# Pliki pomocnicze niepotrzebne w obrazie
+.git/
+.gitignore
+README.md
+
+# obrazy do readme
+imgs/
+
+# Pliki systemowe
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.bak
+*.tmp
+*.DS_Store
