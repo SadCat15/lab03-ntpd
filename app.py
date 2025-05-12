@@ -1,20 +1,23 @@
+import os
 import time
 
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from flask import Flask, jsonify, request
 from model import load_model
+from redis import Redis
 
 app = Flask(__name__)
 start_time = time.time()
+redis = Redis(host='redis', port=6379)
 
 
-@app.route('/') # zadanie 1
+@app.route('/')  # zadanie 1, lab 3
 def hello_world():  # put application's code here
     return {"message": "hello world"}
 
 
-@app.route('/predict', methods=['GET']) # zdania 1 i 2
+@app.route('/predict', methods=['GET'])  # zdania 1 i 2, lab 3
 def predict():
     try:
         if not request.is_json:
@@ -32,7 +35,7 @@ def predict():
         return jsonify({"Error": f"{e}"}), 400
 
 
-@app.route('/info', methods=['GET']) # zadanie 4
+@app.route('/info', methods=['GET'])  # zadanie 4, lab 3
 def info():
     model: LogisticRegression = load_model("model.pkl")
     model_info: dict = {
@@ -44,7 +47,7 @@ def info():
     return jsonify(model_info), 200
 
 
-@app.route('/health', methods=['GET']) # zadanie 4
+@app.route('/health', methods=['GET'])  # zadanie 4, lab 3
 def health():
     server_info: dict = {
         "server-info": {
@@ -53,6 +56,12 @@ def health():
         }
     }
     return jsonify(server_info), 200
+
+
+@app.route('/counter', methods=['GET']) # zadanie 4, lab 4
+def hits():
+    redis.incr('counter')
+    return jsonify({"Counter": f"{redis.get('counter').decode('utf-8')}"}), 200
 
 
 if __name__ == '__main__':
